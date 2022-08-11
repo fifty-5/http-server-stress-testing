@@ -1,9 +1,9 @@
-FROM phpswoole/swoole:4.8-php8.1-alpine
+FROM php:8.1-alpine
 
 WORKDIR /app
 
 COPY . /app
 
-EXPOSE 3001
+EXPOSE 3002
 
-CMD ["php", "server.php"]
+CMD ["php", "-S", "0.0.0.0:3002", "server.php"]

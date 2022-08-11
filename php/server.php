@@ -1,12 +1,5 @@
 <?php
 
-use Swoole\Http\Server;
-use Swoole\Http\Request;
-use Swoole\Http\Response;
-
-$hostname = "0.0.0.0";
-$port = 3001;
-
 function fibonacci($n)
 {
     if ($n <= 1) {
@@ -16,20 +9,15 @@ function fibonacci($n)
     return fibonacci($n - 1) + fibonacci($n - 2);
 }
 
-$http = new Server($hostname, $port);
+$array = [];
 
-$http->on("request", function (Request $request, Response $response) {
-    $array = [];
+for ($i = 0; $i < 20; $i++) {
+    $array[] = fibonacci($i);
+}
 
-    for ($i = 0; $i < 20; $i++) {
-        $array[] = fibonacci($i);
-    }
+header('Content-Type: application/json');
 
-    $response->header("Content-Type", "application/json");
-    $response->end(json_encode([
-        'status' => 'success',
-        'results' => $array
-    ]));
-});
-
-$http->start();
+echo json_encode([
+    'status' => 'success',
+    'results' => $array
+]);

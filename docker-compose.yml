@@ -11,9 +11,17 @@ services:
 
   server-swoole:
     build: 
-      context: ./php
+      context: ./swoole
       dockerfile: Dockerfile
     restart: "no"
     ports:
       - 3001:3001
+
+  server-php:
+    build: 
+      context: ./php
+      dockerfile: Dockerfile
+    restart: "no"
+    ports:
+      - 3002:3002
     
