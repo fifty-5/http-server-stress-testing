@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  server-node:
+    build: 
+      context: ./node-js
+      dockerfile: Dockerfile
+    restart: "no"
+    ports:
+      - 3000:3000
+
+  server-swoole:
+    build: 
+      context: ./php
+      dockerfile: Dockerfile
+    restart: "no"
+    ports:
+      - 3001:3001
+    
